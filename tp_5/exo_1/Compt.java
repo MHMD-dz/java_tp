@@ -8,17 +8,19 @@ public class Compt {
     public String nomClient ;
 
     // methods 
-    public void diposit( double monye ){
-        if (monye > 0) {
+    public void diposit( double monye , int code ){
+        if (monye > 0 && this.code == code) {
             this.solde += monye ;
+            System.out.println(monye + " DA has been added to "+ nomClient + " Balance");
         }else{
             System.out.println("Invalid input try again");
         }
     }
  
-    public void withdro( double monye ){
-        if (monye > 0 && monye <= solde) {
+    public void withdro( double monye , int code ){
+        if (monye > 0 && monye <= solde && this.code == code) {
             this.solde -= monye ;
+            System.out.println(monye + " DA hase been withdrown from "+ nomClient + " Balance");
         }else{
             System.out.println("Invalid input try again");
         }
@@ -33,11 +35,12 @@ public class Compt {
     }
 
     // affichage
-    public void affichage_compte() {
-        System.out.println("Nom client : " + nomClient);
+    public void affichage_compte(int code ) {
+        if (this.code == code) {
+        System.out.println("\nNom client : " + nomClient);
         System.out.println("Code : " + code);
         System.out.println("Solde : " + solde + " DA");
-    }
+    }}
 
     // constractor
     public Compt( double solde , int code , String nomClient){
@@ -45,5 +48,10 @@ public class Compt {
         this.code = code ;
         this.nomClient = nomClient ;
     }
-    public Compt(){}
+    public Compt(int code , String nomClient){
+        this.code = code ;
+        this.nomClient = nomClient ;
+        // 100 da by defult
+        this.solde = 100 ;
+    }
 }
